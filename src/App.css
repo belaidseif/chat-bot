@@ -1,38 +1,176 @@
-.App {
-  text-align: center;
+*{
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
+  width: 100%;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  background-color: mintcream;
+}
+
+.container{
+  position: relative;
+  background: white;
+  width: 400px;
+  height: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+.header{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  z-index: 2;
+}
+.header .icon{
+  margin-left: 10px;
+  height: 100%;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header .icon img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bot-name{
+  padding-left: 10px;
+  height: 100%;
+  flex: 1;
+  
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+.body{
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  padding: 60px 0;
+  overflow: scroll;
+  z-index: -1;
+}
+.body .server{
+  position: relative;
+  background-color: silver;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin-left: 50px;
+  margin-top: 2px;
+  max-width: 250px;
+}
+
+.body .server.end{
+  border-top-left-radius: 4px;
+}
+.body .server.start{
+  border-bottom-left-radius: 4px;
+}
+.body .server.middle{
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.body .server.icon > img{
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0;
+  left: -45px;
+}
+.body .server.without-icon > img{
+  display: none;
+}
+body .msg{
+  display: flex;
+  width: 100%;
+}
+.body .client{
   color: white;
+  background-color: royalblue;
+  display: inline-block;
+  margin-left: auto;
+  padding: 5px 10px;
+  margin-top: 2px;
+  margin-right: 10px;
+  border-radius: 15px;
+  max-width: 250px;
+}
+.body .client > img{
+  display: none;
+}
+.body .client.start{
+  border-bottom-right-radius: 4px;
+}
+.body .client.middle{
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.body .client.end{
+  border-top-right-radius: 4px;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background: mintcream;
+  border-top: 1px solid #aaa;
+}
+.footer form{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.footer .input{
+  height: 100%;
+  width: 85%;
+  display: flex;
+  background: #e6e6e6;
+  align-items: center;
+  justify-content: end;
+}
+.footer input{
+  height: 30px;
+  margin: 0 10px;
+  padding: 0 10px;
+  width: 100%;
+  border-radius: 15px;
+  outline-style: none;
+  border: none;
+}
+.footer .send{
+  flex: 1;
+  background-color: #e6e6e6;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer button{
+  border: none;
+  outline-style: none;
+  cursor: pointer;
+  color: royalblue;
+  font-size: 25px;
+  background-color: transparent;
 }
