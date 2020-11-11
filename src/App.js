@@ -2,7 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+
+const socket = io.connect('http://localhost:8000')
 
 function App() {
     const [input, setInput] = useState('')
@@ -12,6 +15,24 @@ function App() {
         {name:'client', msg:'Hello', pos:"only" },
         {name:'bot', msg:'Can I help you', pos:"only" },
     ])
+    useEffect(() => {
+        socket.on('message', ({name, msg}) => {
+            setBotMessage(msg)
+        })
+    })
+    const setBotMessage = msg => {
+        if(messages[messages.length-1].name === 'client'){
+            setMessages([...messages, {name: 'bot', msg, pos:'only'}])
+        }else{
+            if(messages[messages.length-1].pos === 'only'){
+                messages[messages.length-1].pos = 'start'
+                setMessages([...messages, {name: 'bot', msg, pos:'end'}])
+            }else{
+                messages[messages.length-1].pos = 'middle'
+                setMessages([...messages, {name: 'bot', msg, pos:'end'}])
+            }
+        }
+    }
     const sendMessage = e => {
         e.preventDefault();
         if(messages[messages.length-1].name === 'client'){
@@ -25,6 +46,7 @@ function App() {
         }else{
             setMessages([...messages, {name: 'client', msg: input, pos: 'only'}])
         }
+        socket.emit('message', {name:'client', msg:input})
         setInput('')
     }
     const updateInput = e => {
